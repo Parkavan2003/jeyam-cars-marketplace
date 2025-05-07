@@ -1,22 +1,38 @@
 
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useCarStore } from '@/store/carStore';
 import { CarFiltersComponent } from '@/components/CarFilters';
 import CarCard from '@/components/CarCard';
 import { Button } from '@/components/ui/button';
-import { Grid, List } from 'lucide-react';
+import { Grid, List, ArrowLeft } from 'lucide-react';
 
 const CarListings = () => {
   const { filteredCars, filterCars } = useCarStore();
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const navigate = useNavigate();
   
   // Apply filters when component mounts
   useEffect(() => {
     filterCars();
   }, [filterCars]);
   
+  const handleBack = () => {
+    navigate(-1);
+  };
+  
   return (
     <div className="container mx-auto py-8 px-4">
+      {/* Back Button */}
+      <Button 
+        variant="outline" 
+        onClick={handleBack} 
+        className="mb-6 flex items-center gap-2"
+      >
+        <ArrowLeft size={16} />
+        Back
+      </Button>
+      
       <div className="flex flex-col md:flex-row justify-between items-start gap-8">
         {/* Filters Sidebar */}
         <div className="w-full md:w-1/4 md:sticky md:top-24">
