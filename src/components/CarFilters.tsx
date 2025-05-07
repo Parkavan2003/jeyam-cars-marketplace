@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { useCarStore, CarFilters } from '@/store/carStore';
+import { useCarStore, type CarFilters as CarFiltersType } from '@/store/carStore';
 import { Slider } from '@/components/ui/slider';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
@@ -8,9 +8,9 @@ import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { formatCurrency } from '@/lib/utils';
 
-export const CarFilters = () => {
+export const CarFiltersComponent = () => {
   const { filters, setFilters, resetFilters } = useCarStore();
-  const [localFilters, setLocalFilters] = useState<CarFilters>(filters);
+  const [localFilters, setLocalFilters] = useState<CarFiltersType>(filters);
   
   // Available filter options
   const fuelTypes = ['Petrol', 'Diesel', 'Electric', 'Hybrid', 'CNG'];
@@ -200,4 +200,4 @@ export const CarFilters = () => {
   );
 };
 
-export default CarFilters;
+export default CarFiltersComponent;
