@@ -158,7 +158,7 @@ export const useCarStore = create<CarStore>((set, get) => ({
   },
 
   resetFilters: () => {
-    set(state => ({
+    set(() => ({
       filters: {
         priceRange: [minPrice, maxPrice],
         fuel: [],
@@ -258,7 +258,7 @@ export const useCarStore = create<CarStore>((set, get) => ({
     set(state => {
       const updatedCars = state.cars.map(car => {
         if (car.id === id) {
-          const newStatus = car.status === 'Available' ? 'Sold Out' : 'Available';
+          const newStatus: 'Available' | 'Sold Out' = car.status === 'Available' ? 'Sold Out' : 'Available';
           return { ...car, status: newStatus };
         }
         return car;
